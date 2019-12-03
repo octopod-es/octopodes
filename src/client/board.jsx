@@ -10,10 +10,11 @@ class Board extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'yellow',
+    };
     return (
-      <div
-        id="board"
-      >
+      <div style={style}>
         <Column />
       </div>
     );
