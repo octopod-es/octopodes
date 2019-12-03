@@ -19,8 +19,12 @@ class Column extends Component {
         style={{
           margin: '40px',
           border: '5px solid pink',
+          width: '200px',
+          height: '200px',
+
         }}
       >
+        <h2>{this.props.id}</h2>
         <Card />
       </div>
     );
