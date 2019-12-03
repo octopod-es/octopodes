@@ -10,11 +10,16 @@ class Board extends Component {
   }
 
   render() {
+    const columnHeaders = ['Interested In', 'Applied', 'Phone screen', 'Onsite', 'Offer', 'Accepted'];
+    const displayColumn = [];
+    for (let i = 0; i < columnHeaders.length; i += 1) {
+      displayColumn.push(<Column id={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
+    }
     return (
       <div
         id="board"
       >
-        <Column />
+        {displayColumn}
       </div>
     );
   }
