@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Board from './board.jsx';
+import Board from './components/board.jsx';
 
 class App extends Component {
   constructor() {
