@@ -20,13 +20,20 @@ class Column extends Component {
   }
 
   render() {
-    const relevantCards = [];
-    for (let i = 0; i < this.props.id.length; i += 1){
-      relevantCards.push(<Component />)
-    }
+    // const relevantCards = [];
+    // for (let i = 0; i < this.props.id.length; i += 1){
+    //   relevantCards.push(<Component />)
+    // }
     return (
-      <div id='column'>
-        <Card newCard={this.props.newCard} submitInfo={this.props.submitInfo}/>
+      <div id='column' style={{
+        margin: '40px',
+        border: '5px solid pink',
+        width: '200px',
+        height: '200px',
+        }}>
+        <h2>{this.props.id}</h2>
+        <Card newCard={this.props.newCard} submitInfo={this.props.submitInfo} columnID={this.props.id}/>
+        {/* { relevantCards } */}
       </div>
     )
   }

@@ -23,10 +23,23 @@ class Board extends Component {
   }
 
   render() {
-    return (
-      <div id='board'>
-        <Column />
-        <AddCardButton hello='world' dispatchNewCard={this.props.dispatchNewCard}/>
+    const columnHeaders = ['Interested In', 'Applied', 'Phone screen', 'Onsite', 'Offer', 'Accepted'];
+    const displayColumn = [];
+    for (let i = 0; i < columnHeaders.length; i += 1) {
+      displayColumn.push(<Column id={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
+    }
+    return ( 
+      <div>
+        <div>
+          <AddCardButton hello='world' dispatchNewCard={this.props.dispatchNewCard}/>
+        </div>
+        <div id='board'
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+          {displayColumn}
+        </div>
       </div>
     )
   }

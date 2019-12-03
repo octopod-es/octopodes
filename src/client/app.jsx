@@ -5,16 +5,16 @@ class App extends Component {
   constructor() {
     super()
   }
-  // only required lifecycle method.
+
   render() {
-    return(
-      <div id='board'>
+    return (
+      <div id="board">
         <h1>Octopodes</h1>
         <h3>Scrum board for your interview tracking</h3>
-        <Board/>
+        <Board />
       </div>
-    )
+    );
   }
-};
+}
 
 export default App;
