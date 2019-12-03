@@ -1,0 +1,42 @@
+{
+  "name": "octopodes",
+  "version": "1.0.0",
+  "description": "Octopodes is a open-source project dedicated to facilitating the acquisition of optimizing the synergy between companies and software engineers.",
+  "main": "index.jsx",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack-dev-server & nodemon src/server/server.js",
+    "build": "webpack --open",
+    "devserver": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octopod-es/octopodes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/octopod-es/octopodes/issues"
+  },
+  "homepage": "https://github.com/octopod-es/octopodes#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "nodemon": "^2.0.1",
+    "pg": "^7.14.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
