@@ -7,19 +7,38 @@ const initialState = {
   onsite: [],
   offer: [],
   newCard: false,
+  columns: ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer']
 };
 
 const jobCardsReducer = (state = initialState, action) => {
   const stateCopy = { ...state };
   switch (action.type) {
-    case types.ADD_CARD:
+    case types.NEW_CARD:
       stateCopy.newCard = true;
       // the new card doesn't get added to the interested array until it's submitted
       //   stateCopy.interested.unshift(newCard);
+        console.log(stateCopy)
       return {
         ...state,
         newCard: stateCopy.newCard,
       };
+    case types.SUBMIT_INFO:
+        const submittedCard = {
+            company: action.payload.company,
+            role: action.payload.role,
+            link: action.payload.link
+        };
+
+        stateCopy.interested.unshift(submittedCard);
+        stateCopy.newCard = false;
+
+        return{
+            ...state,
+            newCard: stateCopy.newCard,
+            interested: stateCopy.interested,
+        }
+
+
     default:
       return state;
   }
