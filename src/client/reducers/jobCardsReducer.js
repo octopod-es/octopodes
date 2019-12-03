@@ -26,7 +26,8 @@ const jobCardsReducer = (state = initialState, action) => {
         const submittedCard = {
             company: action.payload.company,
             role: action.payload.role,
-            link: action.payload.link
+            link: action.payload.link,
+            editable: false,
         };
 
         stateCopy.interested.unshift(submittedCard);

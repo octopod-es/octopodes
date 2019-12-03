@@ -11,4 +11,8 @@ export const submitInfoActionCreator = (company, role, link) => ({
         role,
         link
     }
-})
+});
+
+// export const editInfoActionCreator = () => ({
+//   type: types.EDIT_INFO,
+// });
