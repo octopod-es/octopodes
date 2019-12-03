@@ -14,6 +14,10 @@ class Column extends Component {
   }
 
   render() {
+    // const divStyle = {
+    //   display: 'flex',
+    //   alignItems: 'center'
+    // };
     return (
       <div
         style={{
@@ -21,6 +25,7 @@ class Column extends Component {
           border: '5px solid pink',
           width: '200px',
           height: '200px',
+
 
         }}
       >

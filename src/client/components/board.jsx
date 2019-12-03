@@ -18,6 +18,10 @@ class Board extends Component {
     return (
       <div
         id="board"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
       >
         {displayColumn}
       </div>
