@@ -6,24 +6,23 @@ const initialState = {
   phone: [],
   onsite: [],
   offer: [],
-  newCard: {},
+  newCard: false,
 };
 
 const jobCardsReducer = (state = initialState, action) => {
   const stateCopy = { ...state };
   switch (action.type) {
-    case types.ADD_CARD: 
-      const newCard = {
-        company: '',
-      };
-      stateCopy.newCard = newCard;
-      stateCopy.interested.unshift(newCard);
+    case types.ADD_CARD:
+      stateCopy.newCard = true;
+      // the new card doesn't get added to the interested array until it's submitted
+      //   stateCopy.interested.unshift(newCard);
       return {
         ...state,
-        interested: stateCopy.interested,
         newCard: stateCopy.newCard,
       };
-    default: 
+    default:
       return state;
   }
-}
+};
+
+export default jobCardsReducer;
