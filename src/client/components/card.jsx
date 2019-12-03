@@ -13,7 +13,7 @@ class Card extends Component {
       backgroundColor: 'blue'
     }
     return (
-      <div style={style}>
+      <div id='card'>
         <form action="Create Card">
           <input type="text" placeholder="Company"/><br/>
           <input type = "text" placeholder="Role"/><br/>

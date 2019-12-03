@@ -11,8 +11,9 @@ class App extends Component {
   // only required lifecycle method.
   render() {
     return(
-      <div>
-        <h1>"I'm Alive!!!!" - Tim</h1>
+      <div id='board'>
+        <h1>Octopodes</h1>
+        <h3>Scrum board for your interview tracking</h3>
         <Board/>
       </div>
     )

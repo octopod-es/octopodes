@@ -11,7 +11,9 @@ class Column extends Component {
 
   render() {
     return (
-     <Card/>
+      <div id='column'>
+        <Card/>
+      </div>
     )
   }
 }
