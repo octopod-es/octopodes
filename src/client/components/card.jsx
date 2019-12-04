@@ -3,11 +3,12 @@ import { submitInfoActionCreator } from '../actions/actions';
 
 class Card extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
 
-    }
+    };
   }
+
   render() {
     const style = {
       backgroundColor: 'blue'
@@ -15,7 +16,17 @@ class Card extends Component {
     if(this.props.newCard && this.props.columnID === 'interested'){
       return (
         <div id="card">
-          <form action="Create Card">
+          <form
+            action="Create Card"
+            style={{
+            // color: 'blue',
+            // margin: '10px',
+              width: '140px',
+              height: '80px',
+              border: '5px light black',
+              borderStyle: 'groove',
+              textAlign: 'center',
+            }}>
             <input id="company" type="text" placeholder="Company" />
             <br />
             <input id="role" type="text" placeholder="Role" />
@@ -31,13 +42,21 @@ class Card extends Component {
     }
     else if (this.props.inArray){
       return (
-        <div className="hard card">
+        <div style={{
+          // color: 'blue',
+          // margin: '10px',
+            width: '140px',
+            height: '80px',
+            border: '5px light black',
+            borderStyle: 'groove',
+            textAlign: 'center',
+          }} 
+          className="hard card">
           <label>Company: </label><span>{this.props.jobObject.company}</span>
           <br/>
           <label>Role: </label><span>{this.props.jobObject.role}</span>
           <br/>
           <label>Link: </label><span>{this.props.jobObject.link}</span>
-          <br/>
         </div>
       );
     }
@@ -45,6 +64,6 @@ class Card extends Component {
      return null;
     }
   }
-};
+}
 
 export default Card;

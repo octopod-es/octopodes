@@ -1,7 +1,7 @@
-import React, {Component} from  'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Card from './card.jsx';
-import {connect} from 'react-redux';
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,
@@ -20,10 +20,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Column extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
 
-    }
+    };
   }
 
   render() {
@@ -36,14 +36,16 @@ class Column extends Component {
       <div id='column' style={{
         margin: '40px',
         border: '5px solid pink',
-        width: '200px',
-        height: '200px',
+        width: '400px',
+        height: '400px',
         }}>
-        <h2>{this.props.column}</h2>
+        <h2 style={{textAlign: 'center'}}>
+          {this.props.column}
+        </h2>
         <Card newCard={this.props.newCard} dispatchSubmitInfo={this.props.dispatchSubmitInfo} columnID={this.props.id}/>
         { relevantCards }
       </div>
-    )
+    );
   }
 }
 

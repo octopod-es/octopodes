@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Column from './column.jsx';
 import AddCardButton from './addCardButton';
-import { connect } from 'react-redux';
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchNewCard: () => {
-    return dispatch(actions.newCardActionCreator())
-  },
-})
+  dispatchNewCard: () => dispatch(actions.newCardActionCreator()),
+});
 
 const mapStateToProps = (state) => ({
   interested: state.jobCards.interested,
@@ -21,10 +19,10 @@ const mapStateToProps = (state) => ({
 
 class Board extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
 
-    }
+    };
   }
 
   render() {
@@ -34,21 +32,23 @@ class Board extends Component {
     for (let i = 0; i < columnHeaders.length; i += 1) {
       displayColumn.push(<Column id={`${stateProperties[i]}`} column={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
     }
-    return ( 
+    return (
       <div>
         <div>
           <AddCardButton dispatchNewCard={this.props.dispatchNewCard}/>
         </div>
-        <div id='board'
+        <div
+          id="board"
           style={{
             display: 'flex',
             alignItems: 'center',
-          }}>
+          }}
+        >
           {displayColumn}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
