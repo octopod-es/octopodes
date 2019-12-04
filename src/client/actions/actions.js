@@ -13,6 +13,11 @@ export const submitInfoActionCreator = (company, role, link) => ({
     }
 });
 
+export const populateDomActionCreator = (array) => ({
+  type: types.POPULATE_DOM,
+  payload: array,
+});
+
 // export const editInfoActionCreator = () => ({
 //   type: types.EDIT_INFO,
 // });

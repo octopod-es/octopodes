@@ -19,7 +19,8 @@ class Card extends Component {
     const style = {
       backgroundColor: 'blue'
     }
-    if(this.props.newCard && this.props.columnID === 'interested'){
+
+    if (this.props.newCard && this.props.columnID === 'interested'){
       return (
         
           <div id="card">
@@ -33,7 +34,8 @@ class Card extends Component {
                 border: '5px light black',
                 borderStyle: 'groove',
                 textAlign: 'center',
-              }}>
+              }}
+            >
               <input id="company" type="text" placeholder="Company" />
               <br />
               <input id="role" type="text" placeholder="Role" />
@@ -46,11 +48,10 @@ class Card extends Component {
             </form>
           </div>
       );
-    }
-    else if (this.props.inArray){
-      return (
-        <Draggable id = {this.props.key}>
-          <div onDragStart={this.dragStart} style={{
+    } else if (this.props.inArray){
+      return(
+        <Draggable id = {this.props.id}>
+          <div style={{
             // color: 'blue',
             // margin: '10px',
             width: '140px',
@@ -59,17 +60,18 @@ class Card extends Component {
             borderStyle: 'groove',
             textAlign: 'center',
           }} 
-          className="hard card">
-            <label>Company: </label><span>{this.props.jobObject.company}</span>
-            <br/>
-            <label>Role: </label><span>{this.props.jobObject.role}</span>
-            <br/>
-            <label>Link: </label><span>{this.props.jobObject.link}</span>
-          </div>
+
+          className="hard card"
+          >
+          <label>Company: </label><span>{this.props.jobObject.company}</span>
+          <br/>
+          <label>Role: </label><span>{this.props.jobObject.role}</span>
+          <br/>
+          <label>Link: </label><span><a href={`https://${this.props.jobObject.link}`} target='_blank'>{this.props.jobObject.link}</a></span>
+        </div>
         </Draggable>
       );
-    }
-    else {
+    } else {
      return null;
     }
   }

@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+const fetch = require('node-fetch');
 
 const initialState = {
   interested: [],
@@ -15,6 +16,13 @@ const jobCardsReducer = (state = initialState, action) => {
   let submittedCard;
   const stateCopy = { ...state };
   switch (action.type) {
+    case types.POPULATE_DOM:
+      stateCopy.interested = action.payload;
+
+      return {
+        ...state,
+        interested: stateCopy.interested,
+      };
     case types.NEW_CARD:
       stateCopy.newCard = true;
       return {
@@ -31,6 +39,17 @@ const jobCardsReducer = (state = initialState, action) => {
 
       stateCopy.interested.unshift(submittedCard);
       stateCopy.newCard = false;
+
+      fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(submittedCard),
+      })
+        .catch((err) => {
+          if (err) new Error;
+        });
 
       return {
         ...state,

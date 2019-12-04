@@ -11,7 +11,7 @@ class Draggable extends Component {
   drag(e) {
 
     e.dataTransfer.setData('transfer', e.target);
-    console.log('hi brian', e)
+    console.log('index.js', e)
   }
 
   noAllowDrop(e) {

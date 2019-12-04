@@ -34,7 +34,7 @@ class Column extends Component {
       relevantCards.push(<Card jobObject={arrayInState[i]} inArray={true} key={`arrayCard${i}`}/>)
     }
     return (
-      <Droppable> 
+      <Droppable > 
         <div id='column' style={{
           margin: '40px',
           border: '5px solid pink',

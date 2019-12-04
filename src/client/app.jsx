@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import Board from './components/board.jsx';
+import * as actions from '../client/actions/actions'
+import { connect } from 'react-redux';
+
+const mapDispatchToProps = (dispatch) => ({
+  populateDom: (array) => (dispatch(actions.populateDomActionCreator(array))),
+});
+const mapStateToProps = (state) => ({});
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    fetch('/data')
+      .then((data) => {
+        return data.json();
+      })
+      .then((parsedBlob) => {
+        return this.props.populateDom(parsedBlob);
+      })
   }
 
   render() {
@@ -17,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
