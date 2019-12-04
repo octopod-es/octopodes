@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.jsx';
 import * as actions from '../actions/actions';
-import Droppable from './dnd/Droppable'
+import Droppable from './dnd/Droppable';
 
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,
@@ -14,10 +14,8 @@ const mapStateToProps = (state) => ({
   accepted: state.jobCards.accepted,
 });
 const mapDispatchToProps = (dispatch) => ({
-  dispatchSubmitInfo: (company, role, link) => {
-    return dispatch(actions.submitInfoActionCreator(company, role, link))
-  },
-})
+  dispatchSubmitInfo: (company, role, link) => dispatch(actions.submitInfoActionCreator(company, role, link)),
+});
 
 class Column extends Component {
   constructor(props) {
@@ -30,22 +28,34 @@ class Column extends Component {
   render() {
     const relevantCards = [];
     const arrayInState = this.props[this.props.id];
-    for (let i = 0; i < arrayInState.length; i += 1){
-      relevantCards.push(<Card jobObject={arrayInState[i]} inArray={true} key={`arrayCard${i}`}/>)
+    for (let i = 0; i < arrayInState.length; i += 1) {
+      relevantCards.push(<Card jobObject={arrayInState[i]} inArray key={`arrayCard${i}`} />);
     }
     return (
-      <Droppable > 
-        <div id='column' style={{
-          margin: '40px',
-          border: '5px solid pink',
-          width: '400px',
-          height: '400px',
-        }}>
-          <h2 style={{textAlign: 'center'}}>
+      <Droppable>
+        <div
+          id="column"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            // justifyContent: 'center',
+            margin: '10px',
+            border: '5px solid #802864',
+            width: '200px',
+            minHeight: '400px',
+            paddingBottom: '15px',
+            borderRadius: '5px',
+          }}
+        >
+          <h2 style={{ textAlign: 'center' }}>
             {this.props.column}
           </h2>
-          <Card newCard={this.props.newCard} dispatchSubmitInfo={this.props.dispatchSubmitInfo} columnID={this.props.id}/>
-          { relevantCards }
+          <Card newCard={this.props.newCard} dispatchSubmitInfo={this.props.dispatchSubmitInfo} columnID={this.props.id} />
+          <div style={{ }}>
+            { relevantCards }
+          </div>
+
         </div>
       </Droppable>
     );

@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
   onsite: state.jobCards.onsite,
   offer: state.jobCards.offer,
   accepted: state.jobCards.accepted,
-})
+});
 
 class Board extends Component {
   constructor(props) {
@@ -34,14 +34,20 @@ class Board extends Component {
     }
     return (
       <div>
-        <div>
-          <AddCardButton dispatchNewCard={this.props.dispatchNewCard}/>
+        <div style={{
+          display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr', justifyItems: 'center', marginTop: '50px',
+        }}
+        >
+          <AddCardButton dispatchNewCard={this.props.dispatchNewCard} />
         </div>
         <div
           id="board"
           style={{
-            display: 'flex',
-            alignItems: 'center',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
+            alignItems: 'start',
+            justifyItems: 'center',
+            paddingBottom: '10px',
           }}
         >
           {displayColumn}
