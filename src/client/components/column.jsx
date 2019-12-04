@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.jsx';
 import * as actions from '../actions/actions';
+import Droppable from './dnd/Droppable/index';
 
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,
@@ -25,25 +26,27 @@ class Column extends Component {
     //   relevantCards.push(<Component />)
     // }
     return (
-      <div
-        id="column"
-        style={{
-          margin: '40px',
-          border: '5px solid pink',
-          width: '400px',
-          height: '400px',
-        }}
-      >
-        <h2 style={{
-          textAlign: 'center',
-        }}
-        >
-          {this.props.id}
+      <Droppable>
+        <div
+          id="column"
+          style={{
+            margin: '40px',
+            border: '5px solid pink',
+            width: '400px',
+            height: '400px',
+          }}
+          >
+          <h2 style={{
+            textAlign: 'center',
+          }}
+          >
+            {this.props.id}
 
-        </h2>
-        <Card newCard={this.props.newCard} submitInfo={this.props.submitInfo} columnID={this.props.id} />
-        {/* { relevantCards } */}
-      </div>
+          </h2>
+          <Card newCard={this.props.newCard} submitInfo={this.props.submitInfo} columnID={this.props.id} draggable="true" />
+          {/* { relevantCards } */}
+        </div>
+      </Droppable>
     );
   }
 }
