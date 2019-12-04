@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.jsx';
 import * as actions from '../actions/actions';
-import Droppable from './dnd/Droppable'
+import Droppable from './dnd/Droppable/index.js'
 
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,

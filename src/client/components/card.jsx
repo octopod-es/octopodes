@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { submitInfoActionCreator } from '../actions/actions';
-import Draggable from './dnd/Draggable';
+import Draggable from './dnd/Draggable/index.js';
 
 class Card extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class Card extends Component {
       );
     } else if (this.props.inArray){
       return(
-        <Draggable id = {this.props.id}>
+        <Draggable  id = {this.props.id}>
           <div id="card" style={{
             // color: 'blue',
             // margin: '10px',
