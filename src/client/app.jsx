@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
+import Board from './components/board.jsx';
+import * as actions from '../client/actions/actions'
+import { connect } from 'react-redux';
+
+const mapDispatchToProps = (dispatch) => ({
+  populateDom: (array) => (dispatch(actions.populateDomActionCreator(array))),
+});
+const mapStateToProps = (state) => ({});
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-
-    }
+  constructor(props) {
+    super(props);
   }
-  // only required lifecycle method.
+
+  componentDidMount() {
+    fetch('/data')
+      .then((data) => {
+        return data.json();
+      })
+      .then((parsedBlob) => {
+        return this.props.populateDom(parsedBlob);
+      })
+  }
+
   render() {
-    return(
-      <div>
-        <h1>"I'm Alive!!!!" - Tim</h1>
+    return (
+      <div id="board">
+        <h1>Octopodes</h1>
+        <h3>Scrum board for your interview tracking</h3>
+        <Board />
       </div>
-    )
+    );
   }
-};
+}
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
