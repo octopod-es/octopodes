@@ -68,6 +68,12 @@ class Card extends Component {
           <label>Role: </label><span>{this.props.jobObject.role}</span>
           <br/>
           <label>Link: </label><span><a href={`https://${this.props.jobObject.link}`} target='_blank'>{this.props.jobObject.link}</a></span>
+          <br />
+              <button type="button" onClick={() => {
+                // console.log(this.props.jobObject.link);
+                return this.props.dispatchDeleteCard(this.props.jobObject.link);
+                // this.props.dispatchPopulateDom(this.props.interested);
+              }}>Delete</button>
         </div>
         </Draggable>
       );

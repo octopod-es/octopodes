@@ -19,6 +19,10 @@ app.post('/', controller.addJob, (req, res) => {
   res.send(res.locals.jobInsertionInfo);
 });
 
+app.post('/delete', controller.deleteJob, (req, res) => {
+  res.send(res.locals.jobDeletionInfo);
+});
+
 // app.get('/', (req, res) => res.sendFile('/Users/james/code/codesmith/bootcamp/jr/octo/podes/dist/index.html'))
 
 app.use('*', (req, res) => res.send('Server is live - Ben'));

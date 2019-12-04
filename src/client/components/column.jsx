@@ -17,6 +17,10 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSubmitInfo: (company, role, link) => {
     return dispatch(actions.submitInfoActionCreator(company, role, link))
   },
+  dispatchDeleteCard: (link) => {
+    return dispatch(actions.deleteCardActionCreator(link))
+  },
+  populateDom: (array) => (dispatch(actions.populateDomActionCreator(array))),
 })
 
 class Column extends Component {
@@ -27,11 +31,21 @@ class Column extends Component {
     };
   }
 
+  // componentWillUpdate() {
+  //   fetch('/data')
+  //   .then((data) => {
+  //     return data.json();
+  //   })
+  //   .then((parsedBlob) => {
+  //     return this.props.populateDom(parsedBlob);
+  //   })
+  // }
+
   render() {
     const relevantCards = [];
     const arrayInState = this.props[this.props.id];
     for (let i = 0; i < arrayInState.length; i += 1){
-      relevantCards.push(<Card jobObject={arrayInState[i]} inArray={true} key={`arrayCard${i}`}/>)
+      relevantCards.push(<Card jobObject={arrayInState[i]} inArray={true} dispatchDeleteCard={this.props.dispatchDeleteCard} dispatchPopulateDom={this.props.populateDom} key={`arrayCard${i}`}/>)
     }
     return (
       <Droppable > 

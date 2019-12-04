@@ -28,4 +28,18 @@ jobController.addJob = (req, res, next) => {
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
+jobController.deleteJob = (req, res, next) => {
+  const incomingJobLink = req.body;
+  // console.log(incomingJobLink);
+  const jobDeletionQuery = `DELETE FROM jobs WHERE link='${incomingJobLink.link}';`;
+  // console.log(jobDeletionQuery);
+  db.query(jobDeletionQuery)
+    .then(queryRes => {
+      // console.log(queryRes);
+      res.locals.jobDeletionInfo = 'Job has been deleted';
+      next();
+    })
+    .catch((err) => res.status(500).json({ error: err.message }));
+};
+
 module.exports = jobController;

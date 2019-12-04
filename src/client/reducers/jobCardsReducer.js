@@ -56,8 +56,40 @@ const jobCardsReducer = (state = initialState, action) => {
         newCard: stateCopy.newCard,
         interested: stateCopy.interested,
       };
+    case types.DELETE_CARD:
+      // console.log('in the reducer');
+      let indexOfJobObj;
+      let jobObjToSplice;
+      for (let i = 0; i < stateCopy.interested.length; i += 1) {
+        if (action.payload === stateCopy.interested[i].link) {
+          indexOfJobObj = i;
+          jobObjToSplice = stateCopy.interested[indexOfJobObj];
+          // console.log('in the if');
+        }
+      }
+
+      fetch('/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobObjToSplice),
+      })
+        .catch((err) => {
+          if (err) new Error;
+        });
+
+      // console.log(stateCopy.interested);
+      stateCopy.interested.splice(indexOfJobObj, 1);
+      // console.log(stateCopy.interested);
+      // console.log(action.payload);
 
 
+
+      return {
+        ...state,
+        interested: stateCopy.interested,
+      };
     default:
       return state;
   }

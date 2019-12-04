@@ -18,6 +18,11 @@ export const populateDomActionCreator = (array) => ({
   payload: array,
 });
 
+export const deleteCardActionCreator = (link) => ({
+  type: types.DELETE_CARD,
+  payload: link,
+});
+
 // export const editInfoActionCreator = () => ({
 //   type: types.EDIT_INFO,
 // });
