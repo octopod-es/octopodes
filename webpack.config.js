@@ -11,7 +11,8 @@ module.exports = {
     publicPath: '/',
     proxy: {
       // context: () => true,
-      '*': 'http://localhost:3000'
+      '*': 'http://localhost:3000',
+      '/data': 'http://localhost:3000',
     },
     // contentBase: path.resolve(__dirname, 'dist'),
     // compress: true,
