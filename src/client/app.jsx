@@ -3,7 +3,7 @@ import Board from './components/board.jsx';
 
 class App extends Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
