@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { submitInfoActionCreator } from '../actions/actions';
 
 class Card extends Component {
   constructor(props) {
@@ -11,22 +12,38 @@ class Card extends Component {
     const style = {
       backgroundColor: 'blue'
     }
-    if(this.props.newCard && this.props.columnID === 'Interested In'){
+    if(this.props.newCard && this.props.columnID === 'interested'){
       return (
         <div id="card">
           <form action="Create Card">
-            <input type="text" placeholder="Company" />
+            <input id="company" type="text" placeholder="Company" />
             <br />
-            <input type="text" placeholder="Role" />
+            <input id="role" type="text" placeholder="Role" />
             <br />
-            <input type="text" placeholder="Link" />
+            <input id="link" type="text" placeholder="Link" />
             <br />
-            <button type="button">Add Info</button>
+            <button type="button" onClick={() => {
+              return this.props.dispatchSubmitInfo(document.getElementById('company').value, document.getElementById('role').value, document.getElementById('link').value);
+              }}>Add Info</button>
           </form>
         </div>
       );
     }
-    return null;
+    else if (this.props.inArray){
+      return (
+        <div className="hard card">
+          <label>Company: </label><span>{this.props.jobObject.company}</span>
+          <br/>
+          <label>Role: </label><span>{this.props.jobObject.role}</span>
+          <br/>
+          <label>Link: </label><span>{this.props.jobObject.link}</span>
+          <br/>
+        </div>
+      );
+    }
+    else {
+     return null;
+    }
   }
 };
 

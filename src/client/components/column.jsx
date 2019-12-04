@@ -6,10 +6,17 @@ import * as actions from '../actions/actions'
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,
   interested: state.jobCards.interested,
+  applied: state.jobCards.applied,
+  phone: state.jobCards.phone,
+  onsite: state.jobCards.onsite,
+  offer: state.jobCards.offer,
+  accepted: state.jobCards.accepted,
 });
 const mapDispatchToProps = (dispatch) => ({
-  submitInfo: dispatch(actions.submitInfoActionCreator())
-});
+  dispatchSubmitInfo: (company, role, link) => {
+    return dispatch(actions.submitInfoActionCreator(company, role, link))
+  },
+})
 
 class Column extends Component {
   constructor(props) {
@@ -20,10 +27,11 @@ class Column extends Component {
   }
 
   render() {
-    // const relevantCards = [];
-    // for (let i = 0; i < this.props.id.length; i += 1){
-    //   relevantCards.push(<Component />)
-    // }
+    const relevantCards = [];
+    const arrayInState = this.props[this.props.id];
+    for (let i = 0; i < arrayInState.length; i += 1){
+      relevantCards.push(<Card jobObject={arrayInState[i]} inArray={true} key={`arrayCard${i}`}/>)
+    }
     return (
       <div id='column' style={{
         margin: '40px',
@@ -31,9 +39,9 @@ class Column extends Component {
         width: '200px',
         height: '200px',
         }}>
-        <h2>{this.props.id}</h2>
-        <Card newCard={this.props.newCard} submitInfo={this.props.submitInfo} columnID={this.props.id}/>
-        {/* { relevantCards } */}
+        <h2>{this.props.column}</h2>
+        <Card newCard={this.props.newCard} dispatchSubmitInfo={this.props.dispatchSubmitInfo} columnID={this.props.id}/>
+        { relevantCards }
       </div>
     )
   }

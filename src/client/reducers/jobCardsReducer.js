@@ -6,6 +6,7 @@ const initialState = {
   phone: [],
   onsite: [],
   offer: [],
+  accepted: [],
   newCard: false,
   columns: ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer'],
 };
