@@ -51,7 +51,7 @@ class Card extends Component {
     } else if (this.props.inArray){
       return(
         <Draggable id = {this.props.id}>
-          <div style={{
+          <div id="card" style={{
             // color: 'blue',
             // margin: '10px',
             width: '140px',

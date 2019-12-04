@@ -9,9 +9,9 @@ class Draggable extends Component {
   }
   
   drag(e) {
+    e.dataTransfer.setData('transfer', e.target.id);
+    console.log('index.js', e.target)
 
-    e.dataTransfer.setData('transfer', e.target);
-    console.log('index.js', e)
   }
 
   noAllowDrop(e) {
@@ -30,7 +30,7 @@ class Draggable extends Component {
 Draggable.propTypes = {
   id: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node,
+  children: PropTypes.node
 }
 
 export default Draggable;
