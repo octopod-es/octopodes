@@ -56,7 +56,7 @@ class Card extends Component {
           <br/>
           <label>Role: </label><span>{this.props.jobObject.role}</span>
           <br/>
-          <label>Link: </label><span>{this.props.jobObject.link}</span>
+          <label>Link: </label><span><a href={`https://${this.props.jobObject.link}`} target='_blank'>{this.props.jobObject.link}</a></span>
         </div>
       );
     }

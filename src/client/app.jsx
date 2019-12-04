@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('props obj in app: ',this.props)
     fetch('/data')
       .then((data) => {
         return data.json();
