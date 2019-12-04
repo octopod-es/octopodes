@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import Draggable from './dnd/Draggable/index';
+import React, {Component} from 'react';
+import { submitInfoActionCreator } from '../actions/actions';
+import Draggable from './dnd/Draggable';
 
 class Card extends Component {
   constructor(props) {
@@ -9,14 +10,18 @@ class Card extends Component {
     };
   }
 
+  // const dragStart = (e) => {
+  //  const target = e.target
+  //  e.dataTransfer.setData('data', e.target.id)
+  // }
+
   render() {
     const style = {
-      backgroundColor: 'blue',
-    };
-    if (this.props.newCard && this.props.columnID === 'Interested In') {
+      backgroundColor: 'blue'
+    }
+    if(this.props.newCard && this.props.columnID === 'interested'){
       return (
-        <Draggable >
-
+        
           <div id="card">
             <form
               action="Create Card"
@@ -28,24 +33,45 @@ class Card extends Component {
                 border: '5px light black',
                 borderStyle: 'groove',
                 textAlign: 'center',
-                
-              }}
-              
-              >
-              <input type="text" placeholder="Company" />
+              }}>
+              <input id="company" type="text" placeholder="Company" />
               <br />
-              <input type="text" placeholder="Role" />
+              <input id="role" type="text" placeholder="Role" />
               <br />
-              <input type="text" placeholder="Link" />
+              <input id="link" type="text" placeholder="Link" />
               <br />
-              <button type="button">Add Info</button>
+              <button type="button" onClick={() => {
+                return this.props.dispatchSubmitInfo(document.getElementById('company').value, document.getElementById('role').value, document.getElementById('link').value);
+              }}>Add Info</button>
             </form>
           </div>
-      </Draggable>
-
       );
     }
-    return null;
+    else if (this.props.inArray){
+      return (
+        <Draggable id = {this.props.key}>
+          <div onDragStart={this.dragStart} style={{
+            // color: 'blue',
+            // margin: '10px',
+            width: '140px',
+            height: '80px',
+            border: '5px light black',
+            borderStyle: 'groove',
+            textAlign: 'center',
+          }} 
+          className="hard card">
+            <label>Company: </label><span>{this.props.jobObject.company}</span>
+            <br/>
+            <label>Role: </label><span>{this.props.jobObject.role}</span>
+            <br/>
+            <label>Link: </label><span>{this.props.jobObject.link}</span>
+          </div>
+        </Draggable>
+      );
+    }
+    else {
+     return null;
+    }
   }
 }
 

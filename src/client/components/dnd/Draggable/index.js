@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 
 
 class Draggable extends Component {
+  constructor(props) {
+    super(props)
+  }
   
   drag(e) {
-    
+
     e.dataTransfer.setData('transfer', e.target);
     console.log('hi brian', e)
   }

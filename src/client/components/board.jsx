@@ -9,8 +9,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  columns: state.jobCards.columns,
-});
+  interested: state.jobCards.interested,
+  applied: state.jobCards.applied,
+  phone: state.jobCards.phone,
+  onsite: state.jobCards.onsite,
+  offer: state.jobCards.offer,
+  accepted: state.jobCards.accepted,
+})
 
 class Board extends Component {
   constructor(props) {
@@ -21,15 +26,16 @@ class Board extends Component {
   }
 
   render() {
-    const columnHeaders = ['Interested In', 'Applied', 'Phone screen', 'Onsite', 'Offer', 'Accepted'];
+    const columnHeaders = ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer', 'Accepted'];
+    const stateProperties = ['interested', 'applied', 'phone', 'onsite', 'offer', 'accepted'];
     const displayColumn = [];
     for (let i = 0; i < columnHeaders.length; i += 1) {
-      displayColumn.push(<Column id={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
+      displayColumn.push(<Column id={`${stateProperties[i]}`} column={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
     }
     return (
       <div>
         <div>
-          <AddCardButton hello="world" dispatchNewCard={this.props.dispatchNewCard} />
+          <AddCardButton dispatchNewCard={this.props.dispatchNewCard}/>
         </div>
         <div
           id="board"

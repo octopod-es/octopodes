@@ -5,7 +5,6 @@ const AddCardButton = (props) => {
         <button 
         type = 'submit' 
         onClick = {() => {
-            console.log(props.hello);
             return (props.dispatchNewCard())}}
          > + </button>
     )

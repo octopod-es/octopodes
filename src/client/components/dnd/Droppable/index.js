@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Droppable extends Component {
+  constructor(props) {
+    super(props)
+  }
   
   drop(e) {
     e.preventDefault();
     const transfer = e.dataTransfer.getData('transfer');
-    console.log('transfer ', transfer);
+    console.log('transfer ', JSON.stringify(transfer, null, 2));
     // e.target.appendChild(document.getElementById(transfer));
     
     const node = document.createElement('div');
@@ -21,7 +24,7 @@ class Droppable extends Component {
   
   render() {
     return(
-      <div id={this.props.id} onDrop={this.drop} onDragOver={this.allowDrop} style={this.props.style}>
+      <div id={this.props} onDrop={this.drop} onDragOver={this.allowDrop} style={this.props.style}>
         {this.props.children}
       </div>
     )
