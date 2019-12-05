@@ -8,13 +8,14 @@ module.exports = {
   },
   mode: process.env.NODE_ENV,
   devServer: {
-    publicPath: '/',
+    publicPath: '/dist/',
     proxy: {
       // context: () => true,
       '*': 'http://localhost:3000',
       '/data': 'http://localhost:3000',
     },
     // contentBase: path.resolve(__dirname, 'dist'),
+    // watchContentBase: true,
     // compress: true,
     port: 8080
   },

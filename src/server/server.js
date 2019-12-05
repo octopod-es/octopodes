@@ -4,11 +4,18 @@ const app = express();
 const path = require('path');
 const bodyparser = require('body-parser');
 const controller = require('./controller');
+const http = require('http').createServer(app);
 
 const PORT = 3000;
 
-app.use(express.static('dist'));
+
+app.use('/dist/', express.static('dist'));
 app.use(bodyparser.json());
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../../index.html'))
+} )
+
 
 app.get('/data', controller.getData, (req, res) => {
 //   console.log('i am here');
@@ -23,4 +30,5 @@ app.post('/', controller.addJob, (req, res) => {
 
 app.use('*', (req, res) => res.send('Server is live - Ben'));
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+http.listen(PORT, () => console.log("HTTP IS LISTENING ON 3000"));

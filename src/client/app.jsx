@@ -20,6 +20,15 @@ class App extends Component {
   }
 
   render() {
+    const chatStyle = {
+      'form': { background: '#000', padding: '3px', position: 'fixed', bottom: 0, width: '100%' },
+      'form input': { border: 0, padding: '10px', width: '90%', marginRight: '.5%' },
+      'form button' : { width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' },
+      '#messages': { listStyleType: 'none', margin: 0, padding: 0 },
+      '#messages li': { padding: '5px 10px' },
+      '#messages li:nth-child(odd)': { background: '#eee' }
+    }
+
     return (
       <div id="board" style={{ fontFamily: 'Nunito' }}>
         <div style={{
@@ -28,12 +37,19 @@ class App extends Component {
         >
           <img src="https://files.slack.com/files-pri/TMSRC4ZKL-FR98E54UC/image.png" alt="logo" style={{ height: '50px' }} />
           <h2 style={{ margin: '0px 0px 0px 20px', fontSize: '34px' }}>
-            Octopodes
-            <span style={{ marginLeft: '10px', fontSize: '20px' }}> scrum board for your interview tracking</span>
+            xCSQ
+            <span style={{ marginLeft: '10px', fontSize: '20px' }}> scrum board for your interviews process</span>
           </h2>
         </div>
         <hr style={{ marginTop: '10px', width: '500px', marginInlineStart: '85px' }} />
-        <Board />
+        <Board />         
+
+      <div id="chatbox" style={chatStyle}>
+         <ul id="messages"></ul>
+        <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+      </div>
       </div>
     );
   }
