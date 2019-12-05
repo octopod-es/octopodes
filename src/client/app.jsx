@@ -22,8 +22,9 @@ class App extends Component {
   render() {
     const chatStyle = {
       'border': '1px solid purple',
-      'width': '33%',
+      'width': '25%',
       'boxSizing': 'border-box',
+      'position': 'fixed', 'bottom': 0, 'right': 0,
       // 'form': { background: '#000', padding: '3px', position: 'fixed', bottom: 0, width: '100%' },
       // 'form input': { border: 0, padding: '10px', width: '90%', marginRight: '.5%' },
       // 'form button' : { width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' },
@@ -33,7 +34,7 @@ class App extends Component {
     }
 
     // const formStyle = {
-    //   background: '#000', padding: '3px', position: 'fixed', bottom: 0, right: 0, width: '33%',
+    //   background: '#000', padding: '3px', 
     // }
 
     return (
@@ -50,13 +51,13 @@ class App extends Component {
         </div>
         <hr style={{ marginTop: '10px', width: '500px', marginInlineStart: '85px' }} />
         <Board />         
-
       <div id="chatbox" style={chatStyle}>
          <ul id="messages">
            TESTING 
          </ul>
         <div>
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input style={{padding: '10px', width: '82%', margin: '.5%'}} id="m" autocomplete="off" />
+      <button style={{ width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' }}>Send</button>
       </div>
       </div>
       </div>
