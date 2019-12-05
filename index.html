@@ -3,10 +3,43 @@
   <head>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <title style="text-align: center;">xCSQ</title>
+
+    <style>
+      #chat { margin: 0; padding: 0; box-sizing: border-box; border: 1px solid purple; position: fixed; bottom: 0; right: 0; width: 30%; height: auto}
+      /* body { font: 13px Helvetica, Arial; } */
+      form { background: rgb(0, 0, 0); padding: 3px;}
+      form input { border: 0; padding: 10px; width: 85%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      /* #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; } */
+    </style>
   </head>
   <body>
     <div id='app'>
     </div>
+
+    <div id="chat" >
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(e){
+          e.preventDefault(); // prevents page reloading
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+      });
+    </script>
+
     <script src="/dist/main.js"></script>
   </body>
 </html>

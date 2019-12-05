@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Board from './components/board.jsx';
 import * as actions from './actions/actions';
+// import io from 'socket.io-client'
 
 const mapDispatchToProps = (dispatch) => ({
   populateDom: (array) => (dispatch(actions.populateDomActionCreator(array))),
@@ -11,6 +12,8 @@ const mapStateToProps = (state) => ({});
 class App extends Component {
   constructor(props) {
     super(props);
+    // this.emit = this.emit.bind(this);
+    // this.socket = io.connect('localhost:3000')
   }
 
   componentDidMount() {
@@ -18,6 +21,24 @@ class App extends Component {
       .then((data) => data.json())
       .then((parsedBlob) => this.props.populateDom(parsedBlob));
   }
+
+  componentDidUpdate() {
+    // this.emit()
+  }
+  componentWillUnmount(){
+  // this.socket.close();
+ }
+//  emit() {
+//     // const socket = io();
+//     // console.log("FORM", document.querySelector('#form').innerHTML);
+//     console.log("INSIDE EMIT FUNCTION")
+//     console.log("THE MESSAGE IS", document.querySelector('#m').value);
+//     // socket.emit('chat message', document.querySelector('#m').value);
+//       // e.preventDefault(); // prevents page reloading
+//       document.querySelector('#m').val('');
+//   } ;
+
+  
 
   render() {
     const chatStyle = {
@@ -50,16 +71,19 @@ class App extends Component {
           </h2>
         </div>
         <hr style={{ marginTop: '10px', width: '500px', marginInlineStart: '85px' }} />
-        <Board />         
-      <div id="chatbox" style={chatStyle}>
+        <Board />  
+
+
+      {/* <div id="chatbox" style={chatStyle}>
          <ul id="messages">
-           TESTING 
          </ul>
-        <div>
-      <input style={{padding: '10px', width: '82%', margin: '.5%'}} id="m" autocomplete="off" />
-      <button style={{ width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' }}>Send</button>
-      </div>
-      </div>
+        <form id="form">
+      <input style={{padding: '10px', width: '80%', margin: '.5%'}} id="m" autoComplete="off" />
+      <button style={{ width: '12%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' }} 
+      onClick={this.emit}>Send</button>
+      </form>
+
+      </div> */}
       </div>
     );
   }
