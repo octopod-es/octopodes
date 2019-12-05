@@ -21,13 +21,20 @@ class App extends Component {
 
   render() {
     const chatStyle = {
-      'form': { background: '#000', padding: '3px', position: 'fixed', bottom: 0, width: '100%' },
-      'form input': { border: 0, padding: '10px', width: '90%', marginRight: '.5%' },
-      'form button' : { width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' },
-      '#messages': { listStyleType: 'none', margin: 0, padding: 0 },
-      '#messages li': { padding: '5px 10px' },
-      '#messages li:nth-child(odd)': { background: '#eee' }
+      'border': '1px solid purple',
+      'width': '33%',
+      'boxSizing': 'border-box',
+      // 'form': { background: '#000', padding: '3px', position: 'fixed', bottom: 0, width: '100%' },
+      // 'form input': { border: 0, padding: '10px', width: '90%', marginRight: '.5%' },
+      // 'form button' : { width: '9%', background: 'rgb(130, 224, 255)', border: 'none', padding: '10px' },
+      // '#messages': { listStyleType: 'none', margin: 0, padding: 0 },
+      // '#messages li': { padding: '5px 10px' },
+      // '#messages li:nth-child(odd)': { background: '#eee' }
     }
+
+    // const formStyle = {
+    //   background: '#000', padding: '3px', position: 'fixed', bottom: 0, right: 0, width: '33%',
+    // }
 
     return (
       <div id="board" style={{ fontFamily: 'Nunito' }}>
@@ -45,10 +52,12 @@ class App extends Component {
         <Board />         
 
       <div id="chatbox" style={chatStyle}>
-         <ul id="messages"></ul>
-        <form action="">
+         <ul id="messages">
+           TESTING 
+         </ul>
+        <div>
       <input id="m" autocomplete="off" /><button>Send</button>
-      </form>
+      </div>
       </div>
       </div>
     );
