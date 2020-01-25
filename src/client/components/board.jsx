@@ -17,44 +17,24 @@ const mapStateToProps = (state) => ({
   accepted: state.jobCards.accepted,
 });
 
-class Board extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
+const Board = (props) => {
+  const { dispatchNewCard } = props;
+  const columnHeaders = ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer', 'Accepted'];
+  const stateProperties = ['interested', 'applied', 'phone', 'onsite', 'offer', 'accepted'];
+  const displayColumn = [];
+  for (let i = 0; i < columnHeaders.length; i += 1) {
+    displayColumn.push(<Column id={`${stateProperties[i]}`} columnName={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
   }
-
-  render() {
-    const columnHeaders = ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer', 'Accepted'];
-    const stateProperties = ['interested', 'applied', 'phone', 'onsite', 'offer', 'accepted'];
-    const displayColumn = [];
-    for (let i = 0; i < columnHeaders.length; i += 1) {
-      displayColumn.push(<Column id={`${stateProperties[i]}`} column={`${columnHeaders[i]}`} key={`${columnHeaders[i]}`} />);
-    }
-    return (
-      <div>
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr', justifyItems: 'center', marginTop: '50px',
-        }}
-        >
-          <AddCardButton dispatchNewCard={this.props.dispatchNewCard} />
-        </div>
-        <div
-          id="board"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-            alignItems: 'start',
-            justifyItems: 'center',
-            paddingBottom: '10px',
-          }}
-        >
-          {displayColumn}
-        </div>
+  return (
+    <div id="board">
+      <div id="addCardButtonGrid">
+        <AddCardButton dispatchNewCard={dispatchNewCard} />
       </div>
-    );
-  }
-}
+      <div id="columnsGrid">
+        {displayColumn}
+      </div>
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

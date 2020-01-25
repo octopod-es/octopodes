@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import Card from './card.jsx';
+import { useDrop } from 'react-dnd';
+import Card from './card';
 import * as actions from '../actions/actions';
-import Droppable from './dnd/Droppable';
+
 
 const mapStateToProps = (state) => ({
   newCard: state.jobCards.newCard,
@@ -17,49 +18,29 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSubmitInfo: (company, role, link) => dispatch(actions.submitInfoActionCreator(company, role, link)),
 });
 
-class Column extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    };
+const Column = (props) => {
+  const {
+    columnName, newCard, dispatchSubmitInfo, id,
+  } = props;
+  const relevantCards = [];
+  const arrayInState = props[id];
+  for (let i = 0; i < arrayInState.length; i += 1) {
+    relevantCards.push(<Card jobObject={arrayInState[i]} inArray key={`arrayCard${i}`} />);
   }
-
-  render() {
-    const relevantCards = [];
-    const arrayInState = this.props[this.props.id];
-    for (let i = 0; i < arrayInState.length; i += 1) {
-      relevantCards.push(<Card jobObject={arrayInState[i]} inArray key={`arrayCard${i}`} />);
-    }
-    return (
-      <Droppable>
-        <div
-          id="column"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            // justifyContent: 'center',
-            margin: '10px',
-            border: '5px solid #802864',
-            width: '200px',
-            minHeight: '400px',
-            paddingBottom: '15px',
-            borderRadius: '5px',
-          }}
-        >
-          <h2 style={{ textAlign: 'center' }}>
-            {this.props.column}
-          </h2>
-          <Card newCard={this.props.newCard} dispatchSubmitInfo={this.props.dispatchSubmitInfo} columnID={this.props.id} />
-          <div style={{ }}>
-            { relevantCards }
-          </div>
-
-        </div>
-      </Droppable>
-    );
-  }
-}
-
+  const [collectedProps, drop] = useDrop({
+    accept: 'card',
+  });
+  console.log(drop);
+  return (
+    <div className="column" ref={drop}>
+      <h2>
+        {columnName}
+      </h2>
+      <hr id="columnHr" />
+      <Card newCard={newCard} dispatchSubmitInfo={dispatchSubmitInfo} columnName={id} />
+      { relevantCards }
+    </div>
+  );
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

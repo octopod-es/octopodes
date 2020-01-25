@@ -10,11 +10,8 @@ class Board extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'yellow',
-    };
     return (
-      <div style={style}>
+      <div id="app">
         <Column />
       </div>
     );

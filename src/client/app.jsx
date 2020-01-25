@@ -1,42 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Board from './components/board.jsx';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+import Board from './components/board';
 import * as actions from './actions/actions';
 
 const mapDispatchToProps = (dispatch) => ({
-  populateDom: (array) => (dispatch(actions.populateDomActionCreator(array))),
+  populateDom: (array) => dispatch(actions.populateDomActionCreator(array)),
 });
-const mapStateToProps = (state) => ({});
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
+const App = (props) => {
+  useEffect(() => {
     fetch('/data')
       .then((data) => data.json())
-      .then((parsedBlob) => this.props.populateDom(parsedBlob));
-  }
+      .then((parsedBlob) => {
+        props.populateDom(parsedBlob);
+      })
+      .catch((err) => console.log('Data fetch failed! Check yo self!', err));
+  });
 
-  render() {
-    return (
-      <div id="board" style={{ fontFamily: 'Nunito' }}>
-        <div style={{
-          display: 'flex', alignItems: 'center',
-        }}
-        >
-          <img src="https://files.slack.com/files-pri/TMSRC4ZKL-FR98E54UC/image.png" alt="logo" style={{ height: '50px' }} />
-          <h2 style={{ margin: '0px 0px 0px 20px', fontSize: '34px' }}>
-            Octopodes
-            <span style={{ marginLeft: '10px', fontSize: '20px' }}> scrum board for your interview tracking</span>
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <div id="board">
+        <div id="header">
+          <img id="headerLogo" src="https://files.slack.com/files-pri/TMSRC4ZKL-FR98E54UC/image.png" alt="logo" />
+          <h2 id="headerOct">
+          Octopodes
+            <span id="headerText"> scrum board for your interview tracking</span>
           </h2>
         </div>
-        <hr style={{ marginTop: '10px', width: '500px', marginInlineStart: '85px' }} />
+        <hr id="headerHr" />
+        <span id="authors">Chris Romano || Jamie Highsmith || Sejan Miah || Tim Pagra || Ben Mizel</span>
         <Board />
       </div>
-    );
-  }
-}
+    </DndProvider>
+  );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

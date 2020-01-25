@@ -1,0 +1,14 @@
+ [{
+    "company": "google",
+    "role": "business man",
+    "link": "google.com",
+    "applicationstatus": "interested",
+    "editable": "false"
+  },
+  {
+    "company": "amazon",
+    "role": "amazon",
+    "link": "amazon",
+    "applicationstatus": "applied",
+    "editable": "false"
+  }]

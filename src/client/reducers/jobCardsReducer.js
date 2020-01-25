@@ -1,4 +1,6 @@
+import { cloneDeep } from 'lodash';
 import * as types from '../constants/actionTypes';
+
 const fetch = require('node-fetch');
 
 const initialState = {
@@ -9,20 +11,17 @@ const initialState = {
   offer: [],
   accepted: [],
   newCard: false,
-  columns: ['Interested', 'Applied', 'Phone Screen', 'Onsite', 'Offer'],
 };
 
 const jobCardsReducer = (state = initialState, action) => {
   let submittedCard;
-  const stateCopy = { ...state };
+  const stateCopy = cloneDeep(state);
   switch (action.type) {
     case types.POPULATE_DOM:
-      stateCopy.interested = action.payload;
-
-      return {
-        ...state,
-        interested: stateCopy.interested,
-      };
+      action.payload.forEach((el) => {
+        stateCopy[el.applicationstatus].push(el);
+      });
+      return { ...state, ...stateCopy };
     case types.NEW_CARD:
       stateCopy.newCard = true;
       return {
@@ -34,6 +33,7 @@ const jobCardsReducer = (state = initialState, action) => {
         company: action.payload.company,
         role: action.payload.role,
         link: action.payload.link,
+        applicationstatus: 'interested',
         editable: false,
       };
 
@@ -43,20 +43,17 @@ const jobCardsReducer = (state = initialState, action) => {
       fetch('/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(submittedCard),
       })
-        .catch((err) => {
-          if (err) new Error;
-        });
+        .catch(() => console.log('Error posting new job card.  See jobCardsReducer.'));
 
       return {
         ...state,
         newCard: stateCopy.newCard,
         interested: stateCopy.interested,
       };
-
 
     default:
       return state;

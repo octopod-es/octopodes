@@ -3,25 +3,22 @@ const db = require('./model');
 const jobController = {};
 
 jobController.getData = (req, res, next) => {
-  const getDataQuery = 'SELECT * FROM jobs;'
+  const getDataQuery = 'SELECT * FROM jobs;';
   db.query(getDataQuery)
     .then((queryRes) => {
-    //   console.log(queryRes);
       res.locals.data = queryRes.rows;
-    //   console.log(res.locals.data);
       return next();
-    });
+    })
+    .catch((err) => console.log('DB query for "jobs" failed in jobController.getData.', err));
 };
-
 
 jobController.addJob = (req, res, next) => {
   const incomingJob = req.body;
-  // console.log(incomingJob);
-  const jobInsertionQuery = `INSERT INTO jobs (company, role, link) VALUES ('${incomingJob.company}', '${incomingJob.role}', '${incomingJob.link}')
+  const jobInsertionQuery = `INSERT INTO jobs (company, role, link, applicationstatus, editable) VALUES ('${incomingJob.company}',
+  '${incomingJob.role}', '${incomingJob.link}', '${incomingJob.applicationstatus}', '${incomingJob.editable}')
     RETURNING *;`;
-  // console.log(jobInsertionQuery);
   db.query(jobInsertionQuery)
-    .then(queryRes => {
+    .then((queryRes) => {
       res.locals.jobInsertionInfo = queryRes.rows[0];
       next();
     })

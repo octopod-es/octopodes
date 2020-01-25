@@ -1,0 +1,111 @@
+@import url('//fonts.googleapis.com/css?family=Nunito');
+
+html {
+  font-family: Nunito;
+}
+#header {
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#headerLogo {
+  height: 50px;
+}
+
+#headerOct {
+  margin: 0px 0px 0px 20px;
+  font-size: 34px;
+}
+
+#headerText {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+#authors {
+  font-size: 8px;
+  margin-left: 190px;
+  color: gray;
+}
+
+#headerHr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 500px;
+  margin-inline-start: 85px;
+}
+
+#columnsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: start;
+  justify-items: center;
+  padding-bottom: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 4px solid #802864;
+  min-height: 400px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  width: 85%;
+}
+
+#columnHr {
+  width: 90px;
+  margin-top: 0px;
+}
+
+form {
+  width: 140px;
+  text-align: center;
+}
+
+#card {
+  width: auto;
+  height: auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  border-style: groove;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.hardCard {
+  width: auto;
+  height: auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  border-style: groove;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+#addCardButtonGrid {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+justify-items: center;
+margin-top: 50px;
+}
+
+#addCardButton {
+  font-weight: bold;
+  font-size: 16px;
+  width: 50px;
+  border-radius: 4px;
+  background-color: #FBC638;
+}
